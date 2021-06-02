@@ -1,0 +1,120 @@
+{{ questions }}
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>python-quiz-page</title>
+	<link rel = "stylesheet" href = "{% static 'css/quiz.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Quiz App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'indexPage' %}">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'LogoutPage' %}">Logout <span class="sr-only">(current)</span></a>
+            </li>
+           
+          </ul>
+        
+        </div>
+    </nav>
+
+ <center>
+    <H1>PYTHON MCQ QUIZ</H1>
+</center>
+
+
+<div id = "container">
+    <header>
+        <a href="/" class = "button">Go Back</a> 
+       
+    </header>
+
+    <section>
+        <div id = "results"></div>
+        <form name = "quizForm" onsubmit = "return submitAnswers(answers=[{% for q in questions%} '{{ q.answer }}',{% endfor %}])">
+            {% for q in questions %}
+                <h3> {{ q.id }}.  {{ q.question }}</h3>
+                <input type = "radio" name = "q{{ q.id }}" value = "a" id = "q1a">&nbsp;&nbsp;    {{ q.option1 }}<br><br>
+                <input type = "radio" name = "q{{ q.id }}" value = "b" id = "q1b">&nbsp;&nbsp;    {{ q.option2 }}<br><br>       
+                <input type = "radio" name = "q{{ q.id }}" value = "c" id = "q1c">&nbsp;&nbsp;    {{ q.option3 }}<br><br>
+                <input type = "radio" name = "q{{ q.id }}" value = "d" id = "q1d">&nbsp;&nbsp;    {{ q.option4 }}<br><br>                       
+            {% endfor %}
+                <br><br>
+			    <input id= "button" type = "submit" value = "Submit Answer">
+		</form>
+		<br><br>
+		<a href=" " class="button">Reset</a>
+		<br>
+		<a href=" " class="button">Take Another Quiz</a>
+	</section>
+
+
+
+</div>
+
+<script>
+        
+    function submitAnswers(answer)
+    {
+
+    var total = answers.length;
+    var score = 0;
+    var choice = []
+
+
+    //getting choices 
+    //new dynamic method 1
+    for(var i = 1; i <= total; i++){
+        
+        choice[i] = document.forms["quizForm"]["q"+i].value;
+        
+    }
+
+    //check answer
+    // new dynamic method 1 for checking answer
+    for(i = 1; i <= total; i++){
+        if(choice[i] == answers[i - 1]){
+            score++;
+        }
+    }
+
+    //Display Result
+    var results = document.getElementById('results');
+    results.innerHTML = "<h3>You scored <span>" + score + "</span> out of <span>" + total + "</span></h3>"
+    //alert("You scored " + score + " out of " + total);
+
+    return false;
+    }
+
+</script>
+
+   
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
+    crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" 
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+</body>
+</html>

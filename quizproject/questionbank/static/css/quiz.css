@@ -1,0 +1,26 @@
+#container{
+    border: 2px solid;
+    width: 60%;
+    background: rgb(242, 242, 247);
+    margin: 20px auto;
+    overflow: auto;
+    padding: 25px;
+}
+.button{
+    float: right;
+}
+#results{
+    margin-left: 100px;
+}
+#button {
+    font-size: 25px;
+    display: block;
+    width: 100%;
+    height: auto;
+    background: rgb(187, 236, 187);
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}

@@ -1,0 +1,13 @@
+<h1>Index Page</h1>
+<br>
+{% if request.session.username %}
+
+{{ request.session.username }} &nbsp; &nbsp;
+<a href="{% url 'RegisterPage' %}">logout</a>
+
+{% else %}
+<b>
+    <a href="{% url 'RegisterPage' %}">Registration</a>&nbsp;
+    <a href="{% url 'Loginpage' %}">login</a>&nbsp;
+</b>
+{% endif%}
