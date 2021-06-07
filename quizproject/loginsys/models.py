@@ -1,5 +1,6 @@
 from django.db import models
 
+#model for user details
 class NewUser(models.Model):
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)

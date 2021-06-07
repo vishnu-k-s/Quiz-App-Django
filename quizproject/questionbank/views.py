@@ -1,24 +1,42 @@
 from django.shortcuts import render
 from .models import *
-# Create your views here.
+from django.views.generic.base import TemplateView
+
+#rendering python page
+class pythonpage(TemplateView):
+    template_name = 'python.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['questions'] = PythonQBank.objects.all()
+        return context	
 
 
-def pythonquiz(request):
-    return render(request,'python.html')
+#rendering django page
+class djangopage(TemplateView):
+    template_name = 'django.html'
 
-def djangoquiz(request):
-    return render(request,'django.html')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['questions'] = DjangoQBank.objects.all()
+        return context	
 
 
+#rendering quantitative page
+class quantitativepage(TemplateView):
+    template_name = 'quantitative.html'
 
-def pythonpage(request):
-    questions = PythonQBank.objects.all()
-    
-    return render(request, 'python.html', { 'questions': questions})
-	
-	
-def djangopage(request):
-    questions = DjangoQBank.objects.all()
-    
-    return render(request, 'django.html', { 'questions': questions})
-	
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['questions'] = QuantitativeQBank.objects.all()
+        return context	
+
+
+#rendering java page
+class javapage(TemplateView):
+    template_name = 'java.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['questions'] = JavaQBank.objects.all()
+        return context	

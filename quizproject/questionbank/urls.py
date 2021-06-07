@@ -4,17 +4,10 @@ from .views import *
 
 
 urlpatterns = [
-    #below is unuse
-    path('pythonquiz',pythonquiz,name='PythonPage'),
-    #above
-    path('djangoquiz',djangoquiz,name='DjangoPage'),
-
-
-    
-    path('pythonquizpage',pythonpage,name='pythonquizpage'),
-    path('djangoquizpage',djangopage,name='djangoquizpage'),
-
-
-    #path('back',back,name='goback'),
+   
+    path('pythonquizpage',pythonpage.as_view(),name='pythonquizpage'),
+    path('djangoquizpage',djangopage.as_view(),name='djangoquizpage'),
+    path('quantitativequizpage',quantitativepage.as_view(),name='quantitativequizpage'),
+    path('javaquizpage',javapage.as_view(),name='javaquizpage'),
 
 ]

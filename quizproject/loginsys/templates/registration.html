@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register-page</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
@@ -29,7 +31,7 @@
         
         </div>
     </nav>
-
+    
     <center>
         <h4 class="alert-heading">Create an account</h4>
     </center>
@@ -53,7 +55,11 @@
         </div>
         <button type="submit" class="btn btn-success">Create an Account</button>
         <h6>already  have account <a href="{% url 'Loginpage' %}">login</a></h6>
-        
+        {% if messages %}
+        {% for msg in messages%}
+        <h6 style="color: green;">{{ msg }}</h6>
+        {% endfor%}
+        {% endif %}
 
       </form>
     </div>

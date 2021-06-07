@@ -3,12 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
 	<title>python-quiz-page</title>
 	<link rel = "stylesheet" href = "{% static 'css/quiz.css' %}">
-    <script src = "{% static 'js/quiz.js' %}"></script>
+  <script src = "{% static 'js/quiz.js' %}"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,19 +30,15 @@
         </div>
     </nav>
 
- <center>
-    <H1>PYTHON MCQ QUIZ</H1>
-</center>
+    <center>
+      <h1>PYTHON MCQ QUIZ</h1>
+    </center>
 
-
-<div id = "container">
-    <header>
-        
-    </header>
-
-    <div id = "results"></div>
-    <section id="quizsection">
-       
+    <div id = "container">
+    
+      <div id = "results" style="color: green;"></div>
+  
+      <section id="quizsection">     
         <form name = "quizForm" onsubmit = "return submitAnswers(answers=[{% for q in questions%} '{{ q.answer }}',{% endfor %}])">
             {% for q in questions %}
                 <h4> {{ q.id }}.  {{ q.question }}</h4>
@@ -54,25 +48,16 @@
                 <input type = "radio" name = "q{{ q.id }}" value = "d" id = "q1d">&nbsp;&nbsp;    {{ q.option4 }}<br><br>                       
             {% endfor %}
                 <br><br>
-			    <input id= "button" type = "submit" value = "Submit Answer">
-		</form>
-		<br><br>
-		
-	</section>
-    <a href=" " class="button">Reset</a>
-	<br>
-	<a href="{% url 'back' %}" class="button">Take Another Quiz</a>
+			          <input id= "button" type = "submit" value = "Submit Answer">
+	    	</form>
+		    <br><br>		
+      </section>
+  
+      <a href=" " class="button">Reset</a>
+	    <br>
+	    <a href="{% url 'back' %}" class="button">Take Another Quiz</a>
+    </div>
 
-
-</div>
-
-<script>
-        
-    
-
-</script>
-
-   
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
@@ -86,5 +71,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" 
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
+
 </body>
 </html>
